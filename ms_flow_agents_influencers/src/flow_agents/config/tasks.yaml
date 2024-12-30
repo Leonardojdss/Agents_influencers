@@ -1,0 +1,42 @@
+---
+youtube_trends_task:
+  description: Use the YoutubeVideoSearchTool as technique of RAG for encounter popular topics
+    related to {topic}.
+  expected_output: A report detailing the latest trends and popular topics relevant
+    to {topic}, including potential angles to explore in content creation.
+  async_execution: false
+  agent: trend_researcher
+research_trends_task:
+  description: Use the WebsiteSearchTool to research current trends and popular topics
+    related to {topic}.
+  expected_output: A report detailing the latest trends and popular topics relevant
+    to {topic}, including potential angles to explore in content creation.
+  async_execution: false
+  agent: trend_researcher
+analyze_content_task:
+  description: Utilize the ScrapeWebsiteTool to analyze successful content in the
+    {topic} niche. Focus on extracting key elements that contribute to high engagement
+    and success.
+  expected_output: A comprehensive analysis highlighting the key elements of successful
+    content in the {topic} niche. This includes structure, style, and engagement strategies.
+  async_execution: false
+  agent: content_analyst
+create_content_task:
+  description: Based on the research insights, develop engaging content tailored for
+    {platform}. Focus on storytelling and connection with the audience.
+  expected_output: A draft of engaging and tailored content ready for publication
+    on {platform}, leveraging insights from trend and content analysis.
+  async_execution: false
+  agent: content_creator
+  context:
+  - research_trends_task
+  - analyze_content_task
+optimize_content_task:
+  description: Optimize the draft content for search engines to enhance its visibility
+    and reach on {platform}.
+  expected_output: An SEO-optimized version of the content, with relevant keywords
+    and metadata to maximize reach on {platform}.
+  async_execution: false
+  agent: seo_specialist
+  context:
+  - create_content_task
