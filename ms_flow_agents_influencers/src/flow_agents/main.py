@@ -1,6 +1,8 @@
-#!/usr/bin/env python
 import sys
-from flow_agents.crew import flow_agents
+from crew import flow_agents
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # This main file is intended to be a way for your to run your
 # crew locally, so refrain from adding unnecessary logic into this file.
@@ -12,49 +14,48 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'sample_value',
-        'platform': 'sample_value'
+        'topic': 'crie um conteudo sobre profetico cristão',
+        'platform': 'Instagram'
     }
     flow_agents().crew().kickoff(inputs=inputs)
 
+# def train():
+#     """
+#     Train the crew for a given number of iterations.
+#     """
+#     inputs = {
+#         'topic': 'sample_value',
+#         'platform': 'sample_value'
+#     }
+#     try:
+#         flow_agents().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
-def train():
-    """
-    Train the crew for a given number of iterations.
-    """
-    inputs = {
-        'topic': 'sample_value',
-        'platform': 'sample_value'
-    }
-    try:
-        flow_agents().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+#     except Exception as e:
+#         raise Exception(f"An error occurred while training the crew: {e}")
 
-    except Exception as e:
-        raise Exception(f"An error occurred while training the crew: {e}")
+# def replay():
+#     """
+#     Replay the crew execution from a specific task.
+#     """
+#     try:
+#         flow_agents().crew().replay(task_id=sys.argv[1])
 
-def replay():
-    """
-    Replay the crew execution from a specific task.
-    """
-    try:
-        flow_agents().crew().replay(task_id=sys.argv[1])
+#     except Exception as e:
+#         raise Exception(f"An error occurred while replaying the crew: {e}")
 
-    except Exception as e:
-        raise Exception(f"An error occurred while replaying the crew: {e}")
+# def test():
+#     """
+#     Test the crew execution and returns the results.
+#     """
+#     inputs = {
+#         'topic': 'sample_value',
+#         'platform': 'sample_value'
+#     }
+#     try:
+#         flow_agents().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
 
-def test():
-    """
-    Test the crew execution and returns the results.
-    """
-    inputs = {
-        'topic': 'sample_value',
-        'platform': 'sample_value'
-    }
-    try:
-        flow_agents().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
-
-    except Exception as e:
-        raise Exception(f"An error occurred while testing the crew: {e}")
+#     except Exception as e:
+#         raise Exception(f"An error occurred while testing the crew: {e}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -64,12 +65,12 @@ if __name__ == "__main__":
     command = sys.argv[1]
     if command == "run":
         run()
-    elif command == "train":
-        train()
-    elif command == "replay":
-        replay()
-    elif command == "test":
-        test()
+    # elif command == "train":
+    #     train()
+    # elif command == "replay":
+    #     replay()
+    # elif command == "test":
+    #     test()
     else:
         print(f"Unknown command: {command}")
         sys.exit(1)

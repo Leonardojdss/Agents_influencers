@@ -1,6 +1,9 @@
 from crewai.tools import BaseTool
 from typing import Type
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class MyCustomToolInput(BaseModel):

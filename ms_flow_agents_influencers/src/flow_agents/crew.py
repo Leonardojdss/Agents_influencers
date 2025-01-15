@@ -3,6 +3,9 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import WebsiteSearchTool
 from crewai_tools import ScrapeWebsiteTool
 from crewai_tools import YoutubeVideoSearchTool
+from dotenv import load_dotenv
+
+load_dotenv()
 
 @CrewBase
 class flow_agents():
@@ -13,6 +16,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['trend_youtube'],
             tools=[YoutubeVideoSearchTool()],
+            llm="azure/gpt-4o",	
         )
 
     @agent
@@ -20,6 +24,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['trend_researcher'],
             tools=[WebsiteSearchTool()],
+            llm="azure/gpt-4o-mini",
         )
 
     @agent
@@ -27,6 +32,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['content_analyst'],
             tools=[ScrapeWebsiteTool()],
+            llm="azure/gpt-4o-mini",
         )
 
     @agent
@@ -34,6 +40,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['content_creator'],
             tools=[],
+            llm="azure/gpt-4o-mini",
         )
 
     @agent
@@ -41,9 +48,17 @@ class flow_agents():
         return Agent(
             config=self.agents_config['seo_specialist'],
             tools=[],
+            llm="azure/gpt-4o-mini",
         )
 
 
+    @task
+    def youtube_trends_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['youtube_trends_task'],
+            tools=[YoutubeVideoSearchTool()],
+        )
+    
     @task
     def research_trends_task(self) -> Task:
         return Task(
@@ -77,8 +92,9 @@ class flow_agents():
     def crew(self) -> Crew:
         """Creates the flow_agents crew"""
         return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
+            agents=self.agents,
+            tasks=self.tasks,
             process=Process.sequential,
             verbose=True,
+            embedder={"type": "azure", "model": "text-embedding-ada-002"},
         )
