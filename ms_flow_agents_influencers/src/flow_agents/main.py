@@ -1,6 +1,8 @@
 import sys
-from crew import flow_agents
+from flow_agents.crew import flow_agents
 from dotenv import load_dotenv
+from fastapi import FastAPI
+from flow_agents.api.routes import router
 
 load_dotenv()
 
@@ -52,23 +54,25 @@ def run(a, b):
 #     except Exception as e:
 #         raise Exception(f"An error occurred while testing the crew: {e}")
 
+def start_flow(a, b, c):
+
+    command = c
+    if command == "run":
+        run(a, b)
+    # elif command == "train":
+    #     train()
+    # elif command == "replay":
+    #     replay()
+    # elif command == "test":
+    #     test()
+    else:
+        print(f"Unknown command: {command}")
+        sys.exit(1)
+
+# Prefixo para as rotas da API
+app = FastAPI()
+app.include_router(router, prefix="/ms_flow_agents_influencers")
+
 if __name__ == "__main__":
-
-    def start_flow(a, b):
-
-        if len(sys.argv) < 2:
-            print("Usage: main.py <command> [<args>]")
-            sys.exit(1)
-
-        command = sys.argv[1]
-        if command == "run":
-            run(a, b)
-        # elif command == "train":
-        #     train()
-        # elif command == "replay":
-        #     replay()
-        # elif command == "test":
-        #     test()
-        else:
-            print(f"Unknown command: {command}")
-            sys.exit(1)
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=1000)
