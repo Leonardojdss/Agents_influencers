@@ -1,4 +1,5 @@
+#Lista de itens para ignorar
 *.env
 /db
 /env
-*/__pycache__
+__pycache__/

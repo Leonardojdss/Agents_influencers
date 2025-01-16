@@ -2,3 +2,5 @@ python-dotenv==1.0.1
 crewai==0.95.0
 crewai-tools==0.25.8
 youtube-transcript-api==0.6.3
+fastapi==0.115.6
+uvicorn==0.34.0

@@ -87,7 +87,6 @@ class flow_agents():
             
         )
 
-
     @crew
     def crew(self) -> Crew:
         """Creates the flow_agents crew"""
@@ -96,5 +95,5 @@ class flow_agents():
             tasks=self.tasks,
             process=Process.sequential,
             verbose=True,
-            embedder={"type": "azure", "model": "text-embedding-ada-002"},
+            #embedder={"type": "azure", "model": "text-embedding-ada-002"},
         )

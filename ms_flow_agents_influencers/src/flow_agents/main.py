@@ -4,18 +4,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# This main file is intended to be a way for your to run your
-# crew locally, so refrain from adding unnecessary logic into this file.
-# Replace with inputs you want to test with, it will automatically
-# interpolate any tasks and agents information
-
-def run():
+def run(a, b):
     """
     Run the crew.
     """
     inputs = {
-        'topic': 'crie um conteudo sobre profetico cristão',
-        'platform': 'Instagram'
+        'topic': f'{a}',
+        'platform': f'{b}'
     }
     flow_agents().crew().kickoff(inputs=inputs)
 
@@ -58,19 +53,22 @@ def run():
 #         raise Exception(f"An error occurred while testing the crew: {e}")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: main.py <command> [<args>]")
-        sys.exit(1)
 
-    command = sys.argv[1]
-    if command == "run":
-        run()
-    # elif command == "train":
-    #     train()
-    # elif command == "replay":
-    #     replay()
-    # elif command == "test":
-    #     test()
-    else:
-        print(f"Unknown command: {command}")
-        sys.exit(1)
+    def start_flow(a, b):
+
+        if len(sys.argv) < 2:
+            print("Usage: main.py <command> [<args>]")
+            sys.exit(1)
+
+        command = sys.argv[1]
+        if command == "run":
+            run(a, b)
+        # elif command == "train":
+        #     train()
+        # elif command == "replay":
+        #     replay()
+        # elif command == "test":
+        #     test()
+        else:
+            print(f"Unknown command: {command}")
+            sys.exit(1)
