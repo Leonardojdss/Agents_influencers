@@ -2,8 +2,6 @@ import sys
 from flow_agents.crew import flow_agents
 from fastapi import FastAPI
 from flow_agents.api.routes import router
-from dotenv import load_dotenv
-load_dotenv(verbose=True)
 
 # def train():
 #     """
@@ -51,9 +49,9 @@ def run(a, b):
         'topic': f'{a}',
         'platform': f'{b}'
     }
-    from dotenv import load_dotenv
-    load_dotenv()
-    flow_agents().crew().kickoff(inputs=inputs)
+
+    result = flow_agents().crew().kickoff(inputs=inputs)
+    return result
 
 # Prefixo para as rotas da API
 app = FastAPI()
@@ -61,4 +59,4 @@ app.include_router(router, prefix="/ms_flow_agents_influencers")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=1000)
+    uvicorn.run(app, host="0.0.0.0", port=8501)

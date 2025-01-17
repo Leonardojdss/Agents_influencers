@@ -1,12 +1,8 @@
 from crewai import Agent, Crew, Process, Task
-from crewai.project import CrewBase, agent, crew, task
+from crewai.project import CrewBase, agent, crew, task, after_kickoff
 from crewai_tools import WebsiteSearchTool
 from crewai_tools import ScrapeWebsiteTool
 from crewai_tools import YoutubeVideoSearchTool
-from dotenv import load_dotenv
-
-load_dotenv()
-
 
 @CrewBase
 class flow_agents():
@@ -25,7 +21,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['trend_researcher'],
             tools=[WebsiteSearchTool()],
-            #verbose=True
+            #verbose=True,
         )
 
     @agent
@@ -87,6 +83,17 @@ class flow_agents():
             config=self.tasks_config['optimize_content_task'],
         )
 
+    @after_kickoff
+    def process_results(self, result):
+        """Process and format the results after the crew completes."""
+        result.raw = result.raw.strip()
+        result.raw = f"""
+        # Research Results
+        
+        {result.raw}
+        """
+        return result
+    
     @crew
     def crew(self) -> Crew:
         """Creates the flow_agents crew"""

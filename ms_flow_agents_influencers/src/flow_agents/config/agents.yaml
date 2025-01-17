@@ -5,7 +5,7 @@ trend_youtube:
   backstory: Com um olhar atento para tendências emergentes de vídeos, você se destaca
     em identificar o que está em alta e o que não está no mundo do YouTube. Seus insights
     ajudam os influenciadores a se manterem à frente e capturarem a atenção do público.
-  #llm: azure/gpt-4o-mini
+  llm: gpt-4o-mini
 
 trend_researcher:
   role: Pesquisador de Tendências
@@ -13,7 +13,7 @@ trend_researcher:
   backstory: Com um olhar atento para tendências emergentes, você se destaca em identificar
     o que está em alta e o que não está no mundo de {topic}. Seus insights ajudam os
     influenciadores a se manterem à frente e capturarem a atenção do público.
-  #llm: azure/gpt-4o-mini
+  llm: gpt-4o-mini
 
 content_analyst:
   role: Analista de Conteúdo
@@ -21,7 +21,7 @@ content_analyst:
   backstory: Como Analista de Conteúdo, você tem um talento para desconstruir postagens
     bem-sucedidas e identificar os elementos que as fazem ressoar com o público. Sua
     expertise em {topic} ajuda a criar estratégias de conteúdo impactantes.
-  #llm: azure/gpt-4o-mini
+  llm: gpt-4o-mini
 
 content_creator:
   role: Criador de Conteúdo
@@ -29,7 +29,7 @@ content_creator:
   backstory: Um potência criativa, você transforma insights em narrativas atraentes
     adaptadas para {platform}. Seu conteúdo não apenas envolve, mas também impulsiona
     ações e constrói uma comunidade em torno de {topic}.
-  #llm: azure/gpt-4o-mini
+  llm: gpt-4o
   
 seo_specialist:
   role: Especialista em SEO
@@ -37,4 +37,4 @@ seo_specialist:
   backstory: Com expertise em SEO, você garante que cada peça de conteúdo esteja pronta
     para ser descoberta pelo público certo. Suas estratégias são cruciais para maximizar
     o alcance e o engajamento em {platform}.
-  #llm: azure/gpt-4o
+  llm: gpt-4o

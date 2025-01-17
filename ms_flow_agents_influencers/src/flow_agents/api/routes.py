@@ -11,7 +11,7 @@ router = APIRouter()
 async def start_agents(topic: TextRequest, platform: TextRequest):
     try:
         from flow_agents.main import run
-        run(topic.text, platform.text)
-        return {"status": "success"}
+        result = run(topic.text, platform.text)
+        return {"result": f"{result}"}
     except Exception as e:
         return {"status": "error", "message": str(e)}
