@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 @CrewBase
 class flow_agents():
     """flow_agents crew"""
@@ -16,7 +17,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['trend_youtube'],
             tools=[YoutubeVideoSearchTool()],
-            llm="azure/gpt-4o",	
+            #verbose=True
         )
 
     @agent
@@ -24,7 +25,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['trend_researcher'],
             tools=[WebsiteSearchTool()],
-            llm="azure/gpt-4o-mini",
+            #verbose=True
         )
 
     @agent
@@ -32,7 +33,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['content_analyst'],
             tools=[ScrapeWebsiteTool()],
-            llm="azure/gpt-4o-mini",
+            #verbose=True
         )
 
     @agent
@@ -40,7 +41,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['content_creator'],
             tools=[],
-            llm="azure/gpt-4o-mini",
+            #verbose=True
         )
 
     @agent
@@ -48,7 +49,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['seo_specialist'],
             tools=[],
-            llm="azure/gpt-4o-mini",
+            #verbose=True
         )
 
 
@@ -84,7 +85,6 @@ class flow_agents():
     def optimize_content_task(self) -> Task:
         return Task(
             config=self.tasks_config['optimize_content_task'],
-            
         )
 
     @crew
@@ -94,6 +94,5 @@ class flow_agents():
             agents=self.agents,
             tasks=self.tasks,
             process=Process.sequential,
-            verbose=True,
-            #embedder={"type": "azure", "model": "text-embedding-ada-002"},
+            verbose=True
         )

@@ -1,20 +1,9 @@
 import sys
 from flow_agents.crew import flow_agents
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from flow_agents.api.routes import router
-
-load_dotenv()
-
-def run(a, b):
-    """
-    Run the crew.
-    """
-    inputs = {
-        'topic': f'{a}',
-        'platform': f'{b}'
-    }
-    flow_agents().crew().kickoff(inputs=inputs)
+from dotenv import load_dotenv
+load_dotenv(verbose=True)
 
 # def train():
 #     """
@@ -54,20 +43,17 @@ def run(a, b):
 #     except Exception as e:
 #         raise Exception(f"An error occurred while testing the crew: {e}")
 
-def start_flow(a, b, c):
-
-    command = c
-    if command == "run":
-        run(a, b)
-    # elif command == "train":
-    #     train()
-    # elif command == "replay":
-    #     replay()
-    # elif command == "test":
-    #     test()
-    else:
-        print(f"Unknown command: {command}")
-        sys.exit(1)
+def run(a, b):
+    """
+    Run the crew.
+    """
+    inputs = {
+        'topic': f'{a}',
+        'platform': f'{b}'
+    }
+    from dotenv import load_dotenv
+    load_dotenv()
+    flow_agents().crew().kickoff(inputs=inputs)
 
 # Prefixo para as rotas da API
 app = FastAPI()
