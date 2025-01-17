@@ -3,17 +3,24 @@ from crewai.project import CrewBase, agent, crew, task, after_kickoff
 from crewai_tools import WebsiteSearchTool
 from crewai_tools import ScrapeWebsiteTool
 from crewai_tools import YoutubeVideoSearchTool
+from crewai import LLM
 
 @CrewBase
 class flow_agents():
     """flow_agents crew"""
 
+    # @agent
+    # def manager(self) -> Agent:
+    #     return Agent(
+    #         config=self.agents_config['manager'],
+    #         tools=[],
+    #     )
+    
     @agent
     def trend_youtube(self) -> Agent:
         return Agent(
             config=self.agents_config['trend_youtube'],
             tools=[YoutubeVideoSearchTool()],
-            #verbose=True
         )
 
     @agent
@@ -21,7 +28,6 @@ class flow_agents():
         return Agent(
             config=self.agents_config['trend_researcher'],
             tools=[WebsiteSearchTool()],
-            #verbose=True,
         )
 
     @agent
@@ -29,7 +35,6 @@ class flow_agents():
         return Agent(
             config=self.agents_config['content_analyst'],
             tools=[ScrapeWebsiteTool()],
-            #verbose=True
         )
 
     @agent
@@ -37,7 +42,6 @@ class flow_agents():
         return Agent(
             config=self.agents_config['content_creator'],
             tools=[],
-            #verbose=True
         )
 
     @agent
@@ -45,9 +49,7 @@ class flow_agents():
         return Agent(
             config=self.agents_config['seo_specialist'],
             tools=[],
-            #verbose=True
         )
-
 
     @task
     def youtube_trends_task(self) -> Task:
@@ -97,9 +99,14 @@ class flow_agents():
     @crew
     def crew(self) -> Crew:
         """Creates the flow_agents crew"""
+
+        manager_llm = LLM(model="gpt-4o")
+
         return Crew(
             agents=self.agents,
             tasks=self.tasks,
-            process=Process.sequential,
-            verbose=True
+            process=Process.hierarchical,
+            verbose=True,
+            #manager_agent=self.manager,
+            manager_llm=manager_llm
         )
