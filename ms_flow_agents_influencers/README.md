@@ -26,11 +26,14 @@ O agente gerente, **agent_manager**, é responsável por gerenciar o fluxo de tr
    ```sh
    virtualenv env
 2. Acessar o ambiente virtual criado e instalar as dependências do arquivo requirements.txt
+    ```sh
     source env/bin/activate
     pip install -r requirements.txt
 3. Navegar até o diretório
+    ```sh
     cd ms_flow_agents_influencers/src
 4. Iniciar o servidor utilizando Uvicorn:
+    ```sh
     uvicorn flow_agents.main:app --host 0.0.0.0 --port 8500 --reload
 
 Com esses passos, o microserviço estará em execução e pronto para receber requisições. O endpoint /influencers pode ser utilizado para iniciar os agentes e executar as tarefas definidas.
