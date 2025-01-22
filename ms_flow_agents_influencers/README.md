@@ -20,7 +20,7 @@ O agente gerente, **agent_manager**, é responsável por gerenciar o fluxo de tr
 - **FastAPI**: Framework web para construir a API do microserviço.
 - **Uvicorn**: Servidor ASGI para executar a aplicação FastAPI.
 
-## Como Iniciar o Microserviço localmente sem docker
+## Como Iniciar o Microserviço localmente sem docker (Ambiente Linux ubuntu)
 
 1. Criar um ambiente virtual com virtualenv:
    ```sh
@@ -31,10 +31,23 @@ O agente gerente, **agent_manager**, é responsável por gerenciar o fluxo de tr
     pip install -r requirements.txt
 3. Navegar até o diretório
     ```sh
-    cd ms_flow_agents_influencers/src
+    cd Agents_influencers/ms_flow_agents_influencers/src
 4. Iniciar o servidor utilizando Uvicorn:
     ```sh
     uvicorn flow_agents.main:app --host 0.0.0.0 --port 8500 --reload
+
+## Como Iniciar o Microserviço localmente com docker (Ambiente Linux ubuntu)
+
+1. Acessar diretorio onde está o arquivo dockerfile
+    ```sh
+    cd Agents_influencers/ms_flow_agents_influencers
+2. Criar build da imagem docker
+    ```sh
+    sudo docker build -t ms_flow_agents_influencers .
+3. Iniciar container com a imagem criada
+    ```sh
+    sudo docker run -d -p 8500:8500  ms_flow_agents_influencers
+
 
 Com esses passos, o microserviço estará em execução e pronto para receber requisições. O endpoint /influencers pode ser utilizado para iniciar os agentes e executar as tarefas definidas.
 
