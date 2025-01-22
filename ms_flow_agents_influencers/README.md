@@ -46,7 +46,7 @@ O agente gerente, **agent_manager**, é responsável por gerenciar o fluxo de tr
     sudo docker build -t ms_flow_agents_influencers .
 3. Iniciar container com a imagem criada
     ```sh
-    sudo docker run -d -p 8500:8500  ms_flow_agents_influencers
+    sudo docker run -d -p 8500:8500 ms_flow_agents_influencers
 
 
 Com esses passos, o microserviço estará em execução e pronto para receber requisições. O endpoint /influencers pode ser utilizado para iniciar os agentes e executar as tarefas definidas.
