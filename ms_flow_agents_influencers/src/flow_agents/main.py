@@ -41,13 +41,12 @@ from flow_agents.api.routes import router
 #     except Exception as e:
 #         raise Exception(f"An error occurred while testing the crew: {e}")
 
-def run(a, b):
+def run(a):
     """
     Run the crew.
     """
     inputs = {
-        'topic': f'{a}',
-        'platform': f'{b}'
+        'topic': f'{a}'
     }
 
     result = flow_agents().crew().kickoff(inputs=inputs)

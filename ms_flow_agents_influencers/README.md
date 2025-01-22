@@ -1,6 +1,9 @@
 # flow_agents Crew
 
-* para startar a api do microservico
-comando - ms_flow_agents_influencers/src# uvicorn flow_agents.main:app --host 0.0.0.0 --port 1000 --reload
+* para iniciar o mucroserviço dos agentes
+Etapa 1 - Criar ambiente virtual com virtualenv (exemplo de comando > "virtualenv env")
+Etapa 2 - Acessar env criada e instalar as dependência do arquivo requirements.txt
+Etapa 3 - cd Agents_influencers/ms_flow_agents_influencers/src
+Etapa 4 - uvicorn flow_agents.main:app --host 0.0.0.0 --port 8500 --reload
 
 

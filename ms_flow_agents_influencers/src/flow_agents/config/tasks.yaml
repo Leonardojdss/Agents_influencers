@@ -1,36 +1,40 @@
 ---
-youtube_trends_task:
-  description: Use a ferramenta YoutubeVideoSearchTool como técnica de RAG para encontrar tópicos populares relacionados a {topic}.
-  expected_output: Um relatório detalhando as últimas tendências e tópicos populares relevantes para {topic}, incluindo potenciais ângulos a serem explorados na criação de conteúdo.
-  async_execution: false
-  agent: trend_youtube
+# youtube_trends_task:
+#   description: Use a ferramenta YoutubeVideoSearchTool como técnica de RAG para encontrar tópicos populares relacionados a {topic}.
+#   expected_output: Um relatório detalhando as últimas tendências e tópicos populares relevantes para {topic}, incluindo potenciais ângulos a serem explorados na criação de conteúdo.
+#   async_execution: false
+#   agent: trend_youtube
 
-research_trends_task:
-  description: Use a ferramenta WebsiteSearchTool para pesquisar tendências atuais e tópicos populares relacionados a {topic}.
-  expected_output: Um relatório detalhando as últimas tendências e tópicos populares relevantes para {topic}, incluindo potenciais ângulos a serem explorados na criação de conteúdo.
-  async_execution: false
-  agent: trend_researcher
+# research_trends_task:
+#   description: Use a ferramenta WebsiteSearchTool para pesquisar tendências atuais e tópicos populares relacionados a {topic}.
+#   expected_output: Um relatório detalhando as últimas tendências e tópicos populares relevantes para {topic}, incluindo potenciais ângulos a serem explorados na criação de conteúdo.
+#   async_execution: false
+#   agent: trend_researcher
 
-analyze_content_task:
-  description: Utilize a ferramenta ScrapeWebsiteTool para analisar conteúdos de sucesso no nicho de {topic}. Foque em extrair elementos chave que contribuem para alto engajamento e sucesso.
-  expected_output: Uma análise abrangente destacando os elementos chave de conteúdos de sucesso no nicho de {topic}. Isso inclui estrutura, estilo e estratégias de engajamento.
-  async_execution: false
-  agent: content_analyst
+# analyze_content_task:
+#   description: Utilize a ferramenta ScrapeWebsiteTool para analisar conteúdos de sucesso no nicho de {topic}. Foque em extrair elementos chave que contribuem para alto engajamento e sucesso.
+#   expected_output: Uma análise abrangente destacando os elementos chave de conteúdos de sucesso no nicho de {topic}. Isso inclui estrutura, estilo e estratégias de engajamento.
+#   async_execution: false
+#   agent: content_analyst
 
-create_content_task:
-  description: Com base nas percepções da pesquisa, desenvolva conteúdo envolvente e personalizado para {platform}. Foque em contar histórias e conectar-se com o público.
-  expected_output: Um rascunho de conteúdo envolvente e personalizado pronto para publicação em {platform}, aproveitando insights da análise de tendências e conteúdo.
-  async_execution: false
-  agent: content_creator
-  context:
-  - research_trends_task
-  - analyze_content_task
-  - youtube_trends_task
+# create_content_task:
+#   description: Com base nas percepções da pesquisa, desenvolva conteúdo envolvente e personalizado para {platform}. Foque em contar histórias e conectar-se com o público.
+#   expected_output: Um rascunho de conteúdo envolvente e personalizado pronto para publicação em {platform}, aproveitando insights da análise de tendências e conteúdo.
+#   async_execution: false
+#   agent: content_creator
+#   context:
+#   - research_trends_task
+#   - analyze_content_task
+#   - youtube_trends_task
   
-optimize_content_task:
-  description: Otimize o conteúdo rascunhado para motores de busca para aumentar sua visibilidade e alcance em {platform}.
-  expected_output: Uma versão otimizada para SEO do conteúdo, com palavras-chave relevantes e metadados para maximizar o alcance em {platform}.
-  async_execution: false
-  agent: seo_specialist
-  context:
-  - create_content_task
+# optimize_content_task:
+#   description: Otimize o conteúdo rascunhado para motores de busca para aumentar sua visibilidade e alcance em {platform}.
+#   expected_output: Uma versão otimizada para SEO do conteúdo, com palavras-chave relevantes e metadados para maximizar o alcance em {platform}.
+#   async_execution: false
+#   agent: seo_specialist
+#   context:
+#   - create_content_task
+
+aswer_user_order_task:
+  description: Atender o pedido do influenciador, ele está realizando a seguinte ordem > {topic}, atender a ordem do influenciar utilizando apenas os agentes necessarios, o influenciador pode realizar pedidos como dúvida, ele pode pedir a criação de um conteudo, a análise de trends atuais e demais pedidos.
+  expected_output: Esperado um texto que atende o pedido do influenciar, seja a resposta para uma pergunta, seja a criação de um conteudo, seja a verificação de fatos e etc.

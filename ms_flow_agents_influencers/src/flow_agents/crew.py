@@ -9,13 +9,19 @@ from crewai import LLM
 class flow_agents():
     """flow_agents crew"""
 
-    # @agent
-    # def manager(self) -> Agent:
-    #     return Agent(
-    #         config=self.agents_config['manager'],
-    #         tools=[],
-    #     )
-    
+    agent_manager = Agent(
+            role="Gerente do fluxo de agentes para influenciadores",
+            goal="Responsavel por gerenciar o fluxo de trabalho para auxiliar os influenciadores na escrita de \
+                publicações de conteudos para seus canais de midias sociais, para pesquisas de tendencias, \
+                analise de conteudo e otimizacao de conteudo.",
+            backstory="Você está inserido em ambiente compostos por agentes especialistas em diversas áreas \
+                de atuação, como pesquisas de tendencias, analise de conteudo e otimizacao de conteudo. \
+                você tem um longa experiencis em gerenciamento de equipes e projetos, e agora você tem a \
+                missão de gerenciar o fluxo de trabalho desses agentes para auxiliar os influenciadores. \
+                você tem 5 anos de experiência em gerenciamento de equipes e projetos.",
+            allow_delegation=True
+        )
+
     @agent
     def trend_youtube(self) -> Agent:
         return Agent(
@@ -51,38 +57,44 @@ class flow_agents():
             tools=[],
         )
 
-    @task
-    def youtube_trends_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['youtube_trends_task'],
-            tools=[YoutubeVideoSearchTool()],
-        )
+    # @task
+    # def youtube_trends_task(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['youtube_trends_task'],
+    #         tools=[YoutubeVideoSearchTool()],
+    #     )
     
-    @task
-    def research_trends_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['research_trends_task'],
-            tools=[WebsiteSearchTool()],
-        )
+    # @task
+    # def research_trends_task(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['research_trends_task'],
+    #         tools=[WebsiteSearchTool()],
+    #     )
 
-    @task
-    def analyze_content_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['analyze_content_task'],
-            tools=[ScrapeWebsiteTool()],
-        )
+    # @task
+    # def analyze_content_task(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['analyze_content_task'],
+    #         tools=[ScrapeWebsiteTool()],
+    #     )
 
-    @task
-    def create_content_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['create_content_task'],
+    # @task
+    # def create_content_task(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['create_content_task'],
             
-        )
+    #     )
+
+    # @task
+    # def optimize_content_task(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['optimize_content_task'],
+    #     )
 
     @task
     def optimize_content_task(self) -> Task:
         return Task(
-            config=self.tasks_config['optimize_content_task'],
+            config=self.tasks_config['aswer_user_order_task'],
         )
 
     @after_kickoff
@@ -98,15 +110,15 @@ class flow_agents():
     
     @crew
     def crew(self) -> Crew:
-        """Creates the flow_agents crew"""
 
-        manager_llm = LLM(model="gpt-4o")
+        # Pode ser usado o prompt da propria crewai como gerente
+        #manager_llm = LLM(model="gpt-4o")
 
         return Crew(
             agents=self.agents,
             tasks=self.tasks,
             process=Process.hierarchical,
             verbose=True,
-            #manager_agent=self.manager,
-            manager_llm=manager_llm
+            #manager_llm=manager_llm,
+            manager_agent=flow_agents.agent_manager,
         )
