@@ -20,7 +20,7 @@ O agente gerente, **agent_manager**, é responsável por gerenciar o fluxo de tr
 - **FastAPI**: Framework web para construir a API do microserviço.
 - **Uvicorn**: Servidor ASGI para executar a aplicação FastAPI.
 
-## Como Iniciar o Microserviço
+## Como Iniciar o Microserviço localmente sem docker
 
 1. Criar um ambiente virtual com virtualenv:
    ```sh
