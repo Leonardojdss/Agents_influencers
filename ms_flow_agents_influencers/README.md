@@ -24,6 +24,7 @@ O agente gerente, **agent_manager**, é responsável por gerenciar o fluxo de tr
 
 1. Criar um ambiente virtual com virtualenv:
    ```sh
+   cd Agents_influencers/ms_flow_agents_influencers
    virtualenv env
 2. Acessar o ambiente virtual criado e instalar as dependências do arquivo requirements.txt
     ```sh
@@ -31,7 +32,7 @@ O agente gerente, **agent_manager**, é responsável por gerenciar o fluxo de tr
     pip install -r requirements.txt
 3. Navegar até o diretório
     ```sh
-    cd Agents_influencers/ms_flow_agents_influencers/src
+    cd src
 4. Iniciar o servidor utilizando Uvicorn:
     ```sh
     uvicorn flow_agents.main:app --host 0.0.0.0 --port 8500 --reload
